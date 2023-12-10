@@ -1,0 +1,142 @@
+certificateAuthorities:
+    cbyca:
+        tlsCACerts:
+            pem: 
+                - |
+                    -----BEGIN CERTIFICATE-----
+                    MIICcDCCAhagAwIBAgIRAPsDlPdk5AhIZjZN/RGjLpIwCgYIKoZIzj0EAwIwgYgx
+                    CzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEPMA0GA1UEBxMG
+                    RHVyaGFtMQwwCgYDVQQKEwNJQk0xEzARBgNVBAsTCkJsb2NrY2hhaW4xLDAqBgNV
+                    BAMTI21ha2Vlbi1jYnljYS1jYS5tZ3RhcHBzcnYubWFrZWVuLnllMB4XDTIzMDgw
+                    NDIzMDAwNloXDTMzMDgwMTIzMDAwNlowgYgxCzAJBgNVBAYTAlVTMRcwFQYDVQQI
+                    Ew5Ob3J0aCBDYXJvbGluYTEPMA0GA1UEBxMGRHVyaGFtMQwwCgYDVQQKEwNJQk0x
+                    EzARBgNVBAsTCkJsb2NrY2hhaW4xLDAqBgNVBAMTI21ha2Vlbi1jYnljYS1jYS5t
+                    Z3RhcHBzcnYubWFrZWVuLnllMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEFQF7
+                    uVBOoldvIjDISTuLjqkRNyjNwosnV1dp9Ec6/6JfWGRhDLSnOE1uuyaq/Pui5Ifm
+                    fs6dfzd68AGXSIHma6NfMF0wWwYDVR0RBFQwUoIjbWFrZWVuLWNieWNhLWNhLm1n
+                    dGFwcHNydi5tYWtlZW4ueWWCK21ha2Vlbi1jYnljYS1vcGVyYXRpb25zLm1ndGFw
+                    cHNydi5tYWtlZW4ueWUwCgYIKoZIzj0EAwIDSAAwRQIhAOerZlhm15cwKMwi/JXi
+                    gVz3zlpXLXa3nt6fmqZzn6CrAiBLEeOauxSRI3ikjnsjJPHVthRyCEoHUSjuzqJz
+                    MeYQiA==
+                    -----END CERTIFICATE-----
+        caName: ca
+        url: https://makeen-cbyca-ca.mgtappsrv.makeen.ye:443
+        #grpcOptions:
+            #ssl-target-name-override: makeen-cbyca-ca.cb-ledger.ojnoo.com
+            #fail-fast: false
+            #will be taken into consideration if address has no protocol defined, if true then grpc or else grpcs
+            #allow-insecure: true
+        registrar:
+            enrollId: admin
+            enrollSecret: adminpw
+        httpOptions:
+            verify: false
+channels:
+   sandbox:
+        orderers:
+            - orderingservicenode1
+        peers:
+            cbypeer1:
+                chaincodeQuery: true
+                endorsingPeer: true
+                eventSource: true
+                ledgerQuery: true
+client:
+    BCCSP:
+        security:
+            default:
+                provider: SW
+            enabled: true
+            hashAlgorithm: SHA2
+            level: 256
+            softVerify: true
+    credentialStore:
+        cryptoStore:
+            path: msp/cby-msp/users
+        path: msp/cby-msp/users
+    cryptoconfig:
+        path: msp/cby-msp/users
+    logging:
+        level: info
+    organization: cby-msp
+    tlsCerts:
+        client:
+            cert:
+                # path: msp/cby-msp/users/admin@cbyca.pem
+                pem: |
+                    -----BEGIN CERTIFICATE-----
+                    MIIB0TCCAXigAwIBAgIUeiXsUM3WTQfe8wFNizYZwAZENogwCgYIKoZIzj0EAwIw
+                    TzELMAkGA1UEBhMCWUUxDjAMBgNVBAgTBVNhbmFhMQwwCgYDVQQKEwNDQlkxDzAN
+                    BgNVBAsTBk1BS0VFTjERMA8GA1UEAxMIY2J5Y2EtY2EwHhcNMjMwODA0MjI1NTAw
+                    WhcNMjQxMTEzMjIzNDAwWjAhMQ8wDQYDVQQLEwZjbGllbnQxDjAMBgNVBAMTBWFk
+                    bWluMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE17rgOVYr5gaMAd2syl5Ahtie
+                    I4gZQqaevH+cuszAMMzw8kcpSz88IfiDK+o0pKdEqaW3Pybpy4Qwq85Q2zjTXaNg
+                    MF4wDgYDVR0PAQH/BAQDAgeAMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFFavCira
+                    7nqASSYDeUHdlneZmXxlMB8GA1UdIwQYMBaAFDnbn/kj4E2zj0kiH76f5vogql/l
+                    MAoGCCqGSM49BAMCA0cAMEQCIGH3yMj3dx8XpBBdMGpQ57i0LxffV6aLFzE0XzQX
+                    mKKvAiAySZivwR6YavgF2/bgjKTIwzsKRQ4DLptO/FkU4mjOvg==
+                    -----END CERTIFICATE-----
+            key:
+                # path: msp/cby-msp/users/keystore/admin_sk.pem
+                pem: |
+                    -----BEGIN PRIVATE KEY-----
+                    MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQg1C7/TSneSHMnzKFW
+                    G2nyVJL9qjdSXjpPCV5rFqWh2HqhRANCAATXuuA5VivmBowB3azKXkCG2J4jiBlC
+                    pp68f5y6zMAwzPDyRylLPzwh+IMr6jSkp0Sppbc/JunLhDCrzlDbONNd
+                    -----END PRIVATE KEY-----
+orderers:
+    orderingservicenode1:
+        tlsCACerts:
+            pem: |
+                -----BEGIN CERTIFICATE-----
+                MIIB5zCCAY6gAwIBAgIUS8BvSVW/dGUIIB5vLWVif/SiRYMwCgYIKoZIzj0EAwIw
+                UjELMAkGA1UEBhMCWUUxDjAMBgNVBAgTBVNhbmFhMQwwCgYDVQQKEwNDQlkxDzAN
+                BgNVBAsTBk1BS0VFTjEUMBIGA1UEAxMLY2J5Y2EtdGxzY2EwHhcNMjMwODA0MjI1
+                NTAwWhcNMzgwNzMxMjI1NTAwWjBSMQswCQYDVQQGEwJZRTEOMAwGA1UECBMFU2Fu
+                YWExDDAKBgNVBAoTA0NCWTEPMA0GA1UECxMGTUFLRUVOMRQwEgYDVQQDEwtjYnlj
+                YS10bHNjYTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABFXFixJKRdfu0K0OqmRl
+                OAMeugTSBxgNy+tpN9wIsmW6s96eZ1iy1M8cfnBWZjuRGNchwfPzqhljqsplF2jg
+                KvejQjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQW
+                BBQnpddRjCa2hRuNAe7pcV1uOCM8OTAKBggqhkjOPQQDAgNHADBEAiAQv4xRhL9h
+                d2nnOSr3q/YPW6JPvMOL3pWqxC0JtRrUkgIgKiiY4S2sVf5iSHLDJaZc5ro0Kwaf
+                /Pcohfn0eYy9tRg=
+                -----END CERTIFICATE-----
+
+        url: grpcs://makeen-orderingservicenode1-orderer.mgtappsrv.makeen.ye:443
+        grpcOptions:
+            ssl-target-name-override: makeen-orderingservicenode1-orderer.mgtappsrv.makeen.ye
+            #fail-fast: false
+            #will be taken into consideration if address has no protocol defined, if true then grpc or else grpcs
+            allow-insecure: true
+organizations:
+    cby-msp:
+        certificateAuthorities:
+            - cbyca
+        cryptoPath: msp/cby-msp/ca
+        mspid: cby-msp
+        peers:
+            - cbypeer1
+peers:
+    cbypeer1:
+        tlsCACerts:
+            pem: |
+                -----BEGIN CERTIFICATE-----
+                MIIB5zCCAY6gAwIBAgIUS8BvSVW/dGUIIB5vLWVif/SiRYMwCgYIKoZIzj0EAwIw
+                UjELMAkGA1UEBhMCWUUxDjAMBgNVBAgTBVNhbmFhMQwwCgYDVQQKEwNDQlkxDzAN
+                BgNVBAsTBk1BS0VFTjEUMBIGA1UEAxMLY2J5Y2EtdGxzY2EwHhcNMjMwODA0MjI1
+                NTAwWhcNMzgwNzMxMjI1NTAwWjBSMQswCQYDVQQGEwJZRTEOMAwGA1UECBMFU2Fu
+                YWExDDAKBgNVBAoTA0NCWTEPMA0GA1UECxMGTUFLRUVOMRQwEgYDVQQDEwtjYnlj
+                YS10bHNjYTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABFXFixJKRdfu0K0OqmRl
+                OAMeugTSBxgNy+tpN9wIsmW6s96eZ1iy1M8cfnBWZjuRGNchwfPzqhljqsplF2jg
+                KvejQjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQW
+                BBQnpddRjCa2hRuNAe7pcV1uOCM8OTAKBggqhkjOPQQDAgNHADBEAiAQv4xRhL9h
+                d2nnOSr3q/YPW6JPvMOL3pWqxC0JtRrUkgIgKiiY4S2sVf5iSHLDJaZc5ro0Kwaf
+                /Pcohfn0eYy9tRg=
+                -----END CERTIFICATE-----
+        url: grpcs://makeen-cbypeer1-peer.mgtappsrv.makeen.ye:443
+        grpcOptions:
+            ssl-target-name-override: makeen-cbypeer1-peer.mgtappsrv.makeen.ye
+            #fail-fast: false
+            #will be taken into consideration if address has no protocol defined, if true then grpc or else grpcs
+            allow-insecure: true
+version: 1.1.0%

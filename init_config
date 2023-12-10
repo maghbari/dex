@@ -1,0 +1,5 @@
+kubectl get cm cbypeer1-connection-profile -n dlt -o json | jq '.binaryData."profile.json"' -rj | base64 -d | jq .tls.cacerts[0] -rj  | base64 -d  > ./msp/cby-msp/peers/peer1/tlscacerts/peer.crt
+
+kubectl get cm orderingservicenode1-connection-profile -n dlt -o json | jq '.binaryData."profile.json"' -rj | base64 -d | jq .tls.cacerts[0] -rj  | base64 -d > ./msp/cby-msp/orderers/orderer1/tlscacerts/orderer.crt
+
+kubectl get cm cbyca-connection-profile -n dlt -o json | jq '.binaryData."profile.json"' -rj | base64 -d | jq .tls.cert -rj | base64 -d  > ./msp/cby-msp/ca/ca.crt

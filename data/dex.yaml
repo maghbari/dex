@@ -1,0 +1,59 @@
+DebugLevel: 1
+maxinflight: 500
+maxtxwaittime: 60
+sendconcurrency: 500
+receipts:
+    maxdocs: 1000
+    querylimit: 100
+    retryinitialdelay: 2
+    retrytimeout: 60
+    leveldb:
+        path: ./receipts
+events:
+    webhooksAllowPrivateIPs: true
+    leveldb:
+        path: ./events
+HTTP:
+  LocalAddr: 0.0.0.0
+  Port: 8088
+  tls:
+    enabled: false
+    insecureSkipVerify: true
+    # clientCertsFile: /CNTR/registry/certs/cert.pem
+    # clientKeyFile: /CNTR/registry/certs/privkey.pem
+
+rpc:
+    UseGatewayClient: true
+    configpath: ./msp.yaml
+
+openid:
+    host: https://iam.mgtappsrv.makeen.ye
+    adminUsername: admin
+    adminPassword: iam@23*
+    adminRealm: master
+    clientRealm: makeen
+    group: 865e6b08-6b82-4e19-8c5a-23e00c417b5e
+
+# Kafka:
+#     brokers: appsrv.makeen.ye:9092
+#     topicOut: cby-out
+#     topicIn: cby-in
+#     consumerGroup: mkd
+#     clientId: aeeffc07-ddba-4048-90c0-1664ca19f1ce
+#     #groupid: "mk"
+#     #partitions: 2
+#     #replfactor: 1
+#     ProducerFlush:
+#         Bytes: 100
+#         Frequency: 3
+#         Messages: 2
+#     SASL:
+#         Password: ""
+#         Username: ""
+#     TLS:
+#         CACertsFile: ""
+#         ClientCertsFile: ""
+#         ClientKeyFile: ""
+#         Enabled: false
+#         InsecureSkipVerify: true
+
